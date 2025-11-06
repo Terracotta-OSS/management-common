@@ -20,20 +20,17 @@ import java.io.IOException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter;
 import org.apache.shiro.web.util.WebUtils;
 
 public class RestFilter extends HttpMethodPermissionFilter {
-  private static final String MESSAGE = "Access denied.";
-
   @Override
   protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
     if (!response.isCommitted()) {
-      try {
-        WebUtils.toHttp(response).sendError(403, MESSAGE);
-      } catch (ClassCastException cce) {
-        return super.onAccessDenied(request, response);
-      }
+      HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
+      httpServletResponse.resetBuffer();
+      httpServletResponse.setStatus(403);
     }
 
     return false;
