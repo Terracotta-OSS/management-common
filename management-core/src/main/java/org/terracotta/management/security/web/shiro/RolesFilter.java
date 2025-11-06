@@ -19,20 +19,17 @@ package org.terracotta.management.security.web.shiro;
 import java.io.IOException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.shiro.web.filter.authz.RolesAuthorizationFilter;
 import org.apache.shiro.web.util.WebUtils;
 
 public class RolesFilter extends RolesAuthorizationFilter {
-  private static final String MESSAGE = "Access denied.";
-
   @Override
   protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws IOException {
     if (!response.isCommitted()) {
-      try {
-        WebUtils.toHttp(response).sendError(403, MESSAGE);
-      } catch (ClassCastException cce) {
-        return super.onAccessDenied(request, response);
-      }
+      HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
+      httpServletResponse.resetBuffer();
+      httpServletResponse.setStatus(403);
     }
 
     return false;
