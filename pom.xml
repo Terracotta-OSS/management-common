@@ -9,14 +9,14 @@
 
   <groupId>org.terracotta</groupId>
   <artifactId>management-common</artifactId>
-  <version>4.5.0-SNAPSHOT</version>
+  <version>4.5.1-SNAPSHOT</version>
   <name>management-common</name>
   <description>Maven project aggregating common Terracotta management web services modules</description>
   <packaging>pom</packaging>
 
   <properties>
     <artifactory-build-name>management-common</artifactory-build-name>
-    <thirdparty-bom.version>4.5.0-SNAPSHOT</thirdparty-bom.version>
+    <thirdparty-bom.version>4.5.1-SNAPSHOT</thirdparty-bom.version>
   </properties>
 
   <modules>
