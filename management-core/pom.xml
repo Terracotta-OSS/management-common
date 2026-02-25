@@ -26,8 +26,8 @@
       <classifier>jakarta</classifier>
       <exclusions>
         <exclusion>
-          <groupId>org.apache.shiro</groupId>
-          <artifactId>*</artifactId>
+          <groupId>org.apache.shiro.crypto</groupId>
+          <artifactId>shiro-hashes-bcrypt</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
